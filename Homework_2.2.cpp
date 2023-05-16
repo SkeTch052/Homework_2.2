@@ -1,20 +1,48 @@
-﻿// Homework_2.2.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <string>
+#include <windows.h>
 
-#include <iostream>
+struct client {
+    std::string name = "Ivan";
+    int acc_number = 123456789;
+    double balance = 0;
+};
 
-int main()
-{
-    std::cout << "Hello World!\n";
+void SetBalance(client& User, double& new_balance) {
+    User.balance = new_balance;
+};
+
+int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
+    int user_acc;
+    std::string user_name;
+    double new_balance;
+
+    client Andr;
+    Andr.name = "Андрей";
+    Andr.acc_number = 123456789;
+    Andr.balance = 1000.25;
+
+    std::cout << "Введите номер счёта: ";
+    std::cin >> user_acc;
+    while (user_acc != Andr.acc_number) {
+            std::cout << "Ошибка! Счёт не найден. Повторите попытку: ";
+            std::cin >> user_acc;
+        }
+
+    std::cout << "Введите имя владельца: ";
+    std::cin >> user_name;
+    while (user_name != Andr.name) {
+        std::cout << "Ошибка! Некорректное имя владельца. Повторите попытку: ";
+        std::cin >> user_name;
+    }
+
+    std::cout << "Введите новый баланс: ";
+    std::cin >> new_balance;
+    SetBalance(Andr, new_balance);
+
+    std::cout << "Ваш счёт: " << Andr.name << ", " << Andr.acc_number << ", " << Andr.balance << std::endl;
+    return 0;
 }
-
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
-
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
